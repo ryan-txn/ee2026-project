@@ -24,8 +24,9 @@ module menu(
     input wire clk6p25m,
     input wire [12:0] pixel_index,
     input wire btnU, btnC, btnD,
+    input wire enable_menu_screen,
     output reg [15:0] oled_data,
-    output reg [1:0]selection
+    output reg [1:0]selection = 0
     );
     
     wire [15:0] pixel_data1, pixel_data2, pixel_data3, pixel_data4, pixel_data5; 
@@ -37,24 +38,24 @@ module menu(
     
     
     //START        
-    letter_display S1(clk6p25m, 31, 22, 19, 16'hFFFF, pixel_index, pixel_data1, valid1); 
-    letter_display T1(clk6p25m, 38, 22, 20, 16'hFFFF, pixel_index, pixel_data2, valid2); 
-    letter_display A1(clk6p25m, 45, 22, 1, 16'hFFFF, pixel_index, pixel_data3, valid3);
-    letter_display R1(clk6p25m, 52, 22, 18, 16'hFFFF, pixel_index, pixel_data4, valid4);
-    letter_display T2(clk6p25m, 59, 22, 20, 16'hFFFF, pixel_index, pixel_data5, valid5);   
+    letter_display #(19, 31, 22) S1(clk6p25m, 16'hFFFF, pixel_index, pixel_data1, valid1); 
+    letter_display #(20, 38, 22) T1(clk6p25m, 16'hFFFF, pixel_index, pixel_data2, valid2); 
+    letter_display #(1, 45, 22) A1(clk6p25m, 16'hFFFF, pixel_index, pixel_data3, valid3);
+    letter_display #(18, 52, 22) R1(clk6p25m, 16'hFFFF, pixel_index, pixel_data4, valid4);
+    letter_display #(20, 59, 22) T2(clk6p25m, 16'hFFFF, pixel_index, pixel_data5, valid5);   
     
     //HELP
-    letter_display H1(clk6p25m, 34, 32, 8, 16'hFFFF, pixel_index, pixel_data6, valid6); 
-    letter_display E1(clk6p25m, 41, 32, 5, 16'hFFFF, pixel_index, pixel_data7, valid7); 
-    letter_display L1(clk6p25m, 48, 32, 12, 16'hFFFF, pixel_index, pixel_data8, valid8); 
-    letter_display P1(clk6p25m, 55, 32, 16, 16'hFFFF, pixel_index, pixel_data9, valid9); 
+    letter_display #(8, 34, 32) H1(clk6p25m, 16'hFFFF, pixel_index, pixel_data6, valid6); 
+    letter_display #(5, 41, 32) E1(clk6p25m, 16'hFFFF, pixel_index, pixel_data7, valid7); 
+    letter_display #(12, 48, 32) L1(clk6p25m, 16'hFFFF, pixel_index, pixel_data8, valid8); 
+    letter_display #(16, 55, 32) P1(clk6p25m,16'hFFFF, pixel_index, pixel_data9, valid9); 
     
     //ARROW
-    arrow a1(clk6p25m, 24, 22, 16'hFFFF, pixel_index, arrow_data1, arrow_valid1);
-    arrow a2(clk6p25m, 27, 32, 16'hFFFF, pixel_index, arrow_data2, arrow_valid2);  
+    arrow #(24, 22) a1(clk6p25m, 16'hFFFF, pixel_index, arrow_data1, arrow_valid1);
+    arrow #(27, 32) a2(clk6p25m, 16'hFFFF, pixel_index, arrow_data2, arrow_valid2);  
     
     always @(posedge clk6p25m) begin
-        if (btnC) begin
+        if (btnC && enable_menu_screen) begin
             selection = choose;
         end
     end 
