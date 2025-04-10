@@ -1,46 +1,28 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 05.03.2025 14:42:50
-// Design Name: 
-// Module Name: MoveWASD
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
-
-module MoveWASD 
-    ( 
-        // 0:Up 1:Left 2:Right 3:Down
-        input btnU,
-        input btnL,
-        input btnR,
-        input btnD,
-        output reg [3:0] movementDirection
-    );
+module MoveWASD ( 
+    // 0: Up, 1: Left, 2: Right, 3: Down
+    input clk, input [15:0] scan_code,
+    output reg [3:0] movementDirection);
     
-    always @ (btnU, btnL, btnR, btnD) begin
-        if (btnU == 1) // will == be a problem
-            movementDirection <= 4'b0001;
-        else if (btnL == 1) 
-            movementDirection <= 4'b0010;
-        else if (btnR == 1)
-            movementDirection <= 4'b0100;
-        else if (btnD == 1)
-            movementDirection <= 4'b1000;
-        else // follow prev
+    always @ (posedge clk) begin
+        if (scan_code[15:8] == 8'hF0) begin
             movementDirection <= 4'b0000;
+        end else begin 
+            // W key
+            if (scan_code[7:0] == 8'h1D)  begin
+                movementDirection <= 4'b0001;
+            // A key
+            end else if (scan_code[7:0] == 8'h1C) begin
+                movementDirection <= 4'b0010;
+            // D key
+            end else if (scan_code[7:0] == 8'h23) begin
+                movementDirection <= 4'b0100;
+            // S key
+            end else if (scan_code[7:0] == 8'h1B) begin
+                movementDirection <= 4'b1000;
+            end
+        end
     end
-    
+      
 endmodule

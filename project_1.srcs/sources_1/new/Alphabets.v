@@ -1,23 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 03/14/2025 02:29:23 PM
-// Design Name: 
-// Module Name: Alphabets
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
 module letter_display (
     input wire clk,                    // Clock signal for sequential processing
@@ -27,8 +8,8 @@ module letter_display (
     input wire [15:0] color,           // 16-bit color input
     input wire [12:0] pixel_index,     // taking in the bit the oled is drawing       
     output reg [15:0] oled_data,       // Pixel color output
-    output reg valid             // to ensure correct oled_data is used; true when correct data is being outputted
-);
+    output reg valid                   // to ensure correct oled_data is used; true when correct data is being outputted
+    );
 
     reg [0:6] letters [0:26] [0:6];
     wire [6:0] x;
@@ -39,8 +20,10 @@ module letter_display (
     
     always @(posedge clk) begin
         valid <= 0;
+        
         if (x >= start_x && x < (start_x + 7) && y >= start_y && y < (start_y + 7)) begin
             valid <= 1;
+            
             if (letters[letter_ident][(y - start_y)][(x - start_x)] == 1) begin
                 oled_data <= color;
             end else 
@@ -284,8 +267,5 @@ module letter_display (
         letters[26][5] = 7'b0100000;
         letters[26][6] = 7'b0111110;        
     end
-  
 
 endmodule
-
-
