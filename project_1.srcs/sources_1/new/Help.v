@@ -23,8 +23,10 @@
 module Help(
     input wire clk6p25m,
     input wire [12:0] pixel_index,
-    input wire btnU, btnD,
-    output reg [15:0] oled_data
+    input wire btnL,
+    input wire enable_help_screen,
+    output reg [15:0] oled_data,
+    output reg back
     );
     
     wire player_flag;
@@ -74,6 +76,14 @@ module Help(
  
     reg valid_any = 1'b0;
     reg [15:0] final_pixel_data = 16'h0000;
+    
+    always @(posedge clk6p25m) begin 
+        if (enable_help_screen) begin
+            if (btnL)
+                back = 1;
+        end else 
+            back = 0;
+        end
         
     always @ (posedge clk6p25m) begin // edit and put in separate module 
             if (player_flag)

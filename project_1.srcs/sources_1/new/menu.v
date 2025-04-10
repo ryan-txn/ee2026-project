@@ -24,6 +24,7 @@ module menu(
     input wire clk6p25m,
     input wire [12:0] pixel_index,
     input wire btnU, btnC, btnD,
+    input wire enable_menu_screen,
     output reg [15:0] oled_data,
     output reg [1:0]selection = 0
     );
@@ -54,7 +55,7 @@ module menu(
     arrow #(27, 32) a2(clk6p25m, 16'hFFFF, pixel_index, arrow_data2, arrow_valid2);  
     
     always @(posedge clk6p25m) begin
-        if (btnC && selection == 0) begin
+        if (btnC && enable_menu_screen) begin
             selection = choose;
         end
     end 
