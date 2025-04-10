@@ -24,7 +24,6 @@ module Top_Student (
     wire clk6p25m;
     Clock_Divider #(16) clk_divide_6p25m (clk, clk6p25m);
     
-    wire [15:0] start_data = 16'hF800; //default red 
     wire [15:0] help_data = 16'hFFE0; //default yellow actual data to be implemented
     
     wire [12:0] pixel_index; //get which bit is writing from this
@@ -37,14 +36,18 @@ module Top_Student (
 
     menu m(clk6p25m, pixel_index, btnU, btnC, btnD, oled_data_menu, selection);
     
+    //variable for help screen
+    wire [15:0] oled_data_help;
+    
+    Help h(clk6p25m, pixel_index, btnU, btnD, oled_data_help);
+    
     //variables for traps
     wire [15:0] oled_data_game;
     
     //triggered after start is selectd on menu
     Game g(clk, pixel_index, btnU, btnL, btnR, btnD, oled_data_game);
     
-    
-    Oled_Data_Mux oled_data_mux(clk, selection, oled_data_game, help_data, oled_data_menu, enable, oled_data);
+    Oled_Data_Mux oled_data_mux(clk, selection, oled_data_game, oled_data_help, oled_data_menu, enable, oled_data);
         
     Oled_Display oled_display (
     clk6p25m, reset, frame_begin, sending_pixels, sample_pixel, pixel_index, 

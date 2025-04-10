@@ -20,10 +20,11 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module arrow(
+module arrow #(
+    parameter [6:0] start_x = 0,          // X-coordinate of top-left corner
+    parameter [6:0] start_y = 0          // Y-coordinate of top-left corner
+    )(
     input wire clk,                    // Clock signal for sequential processing
-    input wire [6:0] start_x,          // X-coordinate of top-left corner
-    input wire [6:0] start_y,          // Y-coordinate of top-left corner
     input wire [15:0] color,           // 16-bit color input
     input wire [12:0] pixel_index,     // taking in the bit the oled is drawing       
     output reg [15:0] oled_data,       // Pixel color output
