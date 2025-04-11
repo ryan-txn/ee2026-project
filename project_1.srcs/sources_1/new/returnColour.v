@@ -1,37 +1,15 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 06.03.2025 20:01:31
-// Design Name: 
-// Module Name: returnColour
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
 // Array of trap locations and colour
-module returnColour(
-        input clk,
-        input [12:0] pixel_index,
-        input [6:0] xOffset,
-        input [5:0] yOffset,
-        input resetFlag,
-        input [4:0] taken, // each bit respresent 1 key, if 00100 means key 3 is taken and should not be shown
-        output reg [15:0] oled_colour
-    );
+module returnColour (
+    input clk, input [12:0] pixel_index,
+    input [6:0] xOffset, input [5:0] yOffset,
+    input [1:0] collided_flag, input [3:0] taken, // each bit respresent 1 key (if 00100 -> means key 3 is taken and should not be shown)
+    output reg [15:0] oled_colour);
     
     // instantiate wall flags for each object instance
-    wire wall1_flag;
+    wire rest1_flag;
+    wire rest2_flag;
     
     // instantiate trap flags 
     wire trap1_flag;
@@ -40,64 +18,75 @@ module returnColour(
     wire trap4_flag;
     wire trapDynamic1_flag;
     wire trapDynamic2_flag;
+    wire trapDynamic3_flag;
     
     //instantiate key flags
     wire key1_flag;
+    wire key2_flag;
+    wire key3_flag;
+    wire key4_flag;
     
     //instantiate door flags
     wire door1_flag;
+    wire door2_flag;
+    wire door3_flag;
+    wire door4_flag;
+    
+    wire destroyed1_flag;
+    wire destroyed2_flag;
     
     integer count = 0;
 
-        
-    always @ (posedge clk) begin // edit and put in separate module
-        count <= count + 1;
-        if (resetFlag) begin
-            count <= 0;
-        end
-    
-        if ( // Paint block/player pixels to colour green
+    // edit and put in separate module   
+    always @ (posedge clk) begin 
+        if ( // Paint player block to colour green
             (pixel_index / 96 < 4 + yOffset && pixel_index / 96 >= yOffset) && 
-            (pixel_index % 96 < 4 + xOffset && pixel_index % 96 >= xOffset) &&
-            !(
-                (count < 50000000 && count > 0) || 
-                (count < 150000000 && count > 100000000) ||
-                (count < 250000000 && count > 200000000) )
-            )
-            oled_colour <= 16'h07E0; //green    
-        else if (wall1_flag)
-            oled_colour <= 16'hFFFF; //white    
-        else if (
-            trap1_flag || 
-            trap2_flag ||
-            trap3_flag ||
-            trap4_flag 
-        )
-            oled_colour <= 16'hF800;  //red   
-        else if (key1_flag)
-            oled_colour <= 16'hF819;  //pink         
-        else if (door1_flag == 1)//door open/exist a place to stop
-            oled_colour <= 16'hFFFF;  //white becomes a stop point after taking key
-        else if (
-            trapDynamic1_flag ||
-            trapDynamic2_flag
-        )
-            oled_colour <= 16'hFB00; //orange
-        else 
+            (pixel_index % 96 < 4 + xOffset && pixel_index % 96 >= xOffset))
+            // green
+            oled_colour <= 16'h07E0;     
+        else if (rest1_flag || rest2_flag)
+            // white
+            oled_colour <= 16'hFFFF;     
+        else if (trap1_flag || trap2_flag || trap3_flag || trap4_flag)
+            // red
+            oled_colour <= 16'hF800;     
+        else if (key1_flag || key2_flag || key3_flag || key4_flag)
+            // pink
+            oled_colour <= 16'hF819; 
+        // door open (exist a place to stop)
+        else if (door1_flag == 1 || door2_flag == 1 || door3_flag == 1)
+            // white (becomes a stop point after taking key)
+            oled_colour <= 16'hFFFF;  
+        else if (trapDynamic1_flag || trapDynamic2_flag || trapDynamic3_flag)
+            // orange
+            oled_colour <= 16'hFB00;
+        // last door open (game completed)
+        else if (door4_flag == 1)
+            // yellow
+            oled_colour <= 16'hFFE0;
+        else if (destroyed1_flag == 1 || destroyed2_flag == 1)
+            // blue 
+            oled_colour <= 16'h001F;
+        else
+            // black 
             oled_colour <= 0;   
     end
     
-    // Walls shader, instantiate multiple traps (Location is top left of object)
+    // Rest points shader, instantiate multiple rest points (Location is top left of object)
     // Link the flags
     returnColour_Walls #(
         .ROW_LOC(0),
         .COL_LOC(40),
         .DIMENSIONS(4)
-    ) wall1_Colour (
-        clk,
-        pixel_index,
-        wall1_flag
-    );
+    ) rest1_Colour (
+        clk, pixel_index, rest1_flag);
+    
+    returnColour_Walls #(
+        .ROW_LOC(47),
+        .COL_LOC(55),
+        .DIMENSIONS(4)
+    ) rest2_Colour (
+        clk, pixel_index, rest2_flag);
     
     // Traps shader, instantiate multiple traps (Location is top left of object)
     // Link the flags
@@ -106,40 +95,29 @@ module returnColour(
         .COL_LOC(85),
         .DIMENSIONS(4)
     ) trap1_Colour (
-        clk,
-        pixel_index,
-        trap1_flag
-    );
+        clk, pixel_index, trap1_flag);
     
     returnColour_StaticTraps #(
-        .ROW_LOC(53),
-        .COL_LOC(85),
+        .ROW_LOC(54),
+        .COL_LOC(92),
         .DIMENSIONS(4)
     ) trap2_Colour (
-        clk,
-        pixel_index,
-        trap2_flag
-    );
+        clk, pixel_index, trap2_flag);
     
     returnColour_StaticTraps #(
         .ROW_LOC(30),
         .COL_LOC(40),
         .DIMENSIONS(4)
     ) trap3_Colour (
-        clk,
-        pixel_index,
-        trap3_flag
-    );
+        clk, pixel_index, trap3_flag);
     
     returnColour_StaticTraps #(
-        .ROW_LOC(53),
+        .ROW_LOC(54),
         .COL_LOC(0),
         .DIMENSIONS(4)
     ) trap4_Colour (
-        clk,
-        pixel_index,
-        trap4_flag
-    );
+        clk, pixel_index, trap4_flag);
+    
     
     returnColour_DynamicTraps #(
         .ROW_LOC(30),
@@ -147,35 +125,80 @@ module returnColour(
         .DIMENSIONS(4),
         .IS_UP_DIRECTION(1)
     ) trapDynamic1_Colour (
-        clk,
-        pixel_index,
-        trapDynamic1_flag
-    );
+        clk, pixel_index, trapDynamic1_flag);
     
     returnColour_DynamicTraps #(
-        .ROW_LOC(30),
+        .ROW_LOC(40),
         .COL_LOC(20),
         .DIMENSIONS(4),
         .IS_UP_DIRECTION(0)
     ) trapDynamic2_Colour (
-        clk,
-        pixel_index,
-        trapDynamic2_flag
-    );
+        clk, pixel_index, trapDynamic2_flag);
+        
+    returnColour_DynamicTraps #(         
+        .ROW_LOC(40),
+        .COL_LOC(65),
+        .DIMENSIONS(4),
+        .IS_UP_DIRECTION(1)
+    ) trapDynamic3_Colour (
+        clk, pixel_index, trapDynamic3_flag);
     
+    // Keys / doors shader, instantiate multiple keys / doors (Location is top left of object)
+    // Link the flags
     returnColour_Key_Door #(
         .ROW_LOC_KEY(0),
         .COL_LOC_KEY(25),
         .DIMENSIONS_KEY(4),
-        .ROW_LOC_DOOR(25),
+        .ROW_LOC_DOOR(20),
         .COL_LOC_DOOR(0),
         .DIMENSIONS_DOOR(4)
     ) key1_Colour (
-        clk,
-        pixel_index,
-        taken[0],
-        key1_flag,
-        door1_flag
-    );
+        clk, pixel_index, taken[0], key1_flag, door1_flag);
+    
+    returnColour_Key_Door #(
+        .ROW_LOC_KEY(0),
+        .COL_LOC_KEY(92),
+        .DIMENSIONS_KEY(4),
+        .ROW_LOC_DOOR(47),
+        .COL_LOC_DOOR(92),
+        .DIMENSIONS_DOOR(4)
+    ) key2_Colour (
+        clk, pixel_index, taken[1], key2_flag, door2_flag);
+        
+    returnColour_Key_Door #(
+        .ROW_LOC_KEY(59),
+        .COL_LOC_KEY(0),
+        .DIMENSIONS_KEY(4),
+        .ROW_LOC_DOOR(59),
+        .COL_LOC_DOOR(73),
+        .DIMENSIONS_DOOR(4)
+    ) key3_Colour (
+        clk, pixel_index, taken[2], key3_flag, door3_flag);
+        
+    returnColour_Key_Door #(
+        .ROW_LOC_KEY(14),
+        .COL_LOC_KEY(73),
+        .DIMENSIONS_KEY(4),
+        .ROW_LOC_DOOR(0),
+        .COL_LOC_DOOR(0),
+        .DIMENSIONS_DOOR(4)
+    ) key4_Colour (
+        clk, pixel_index, taken[3], key4_flag, door4_flag);
+    
+    // Destroyable blocks shader, instantiate multiple blocks (Location is top left of object)
+    // Link the flags   
+    returnColour_Destroyable #(
+        .ROW_LOC(30),
+        .COL_LOC(92),
+        .DIMENSIONS(4)
+    ) destroyableBlock1_Colour (
+        clk, pixel_index, collided_flag[0], destroyed1_flag);
+    
+    returnColour_Destroyable #(
+        .ROW_LOC(59),
+        .COL_LOC(40),
+        .DIMENSIONS(4)
+    ) destroyableBlock2_Colour (
+        clk, pixel_index, collided_flag[1], destroyed2_flag);
     
 endmodule

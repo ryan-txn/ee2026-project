@@ -1,34 +1,14 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 03/21/2025 09:09:08 PM
-// Design Name: 
-// Module Name: arrow
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module arrow #(
-    parameter [6:0] start_x = 0,          // X-coordinate of top-left corner
-    parameter [6:0] start_y = 0          // Y-coordinate of top-left corner
+    parameter [6:0] start_x = 0,       // X-coordinate of top-left corner
+    parameter [6:0] start_y = 0        // Y-coordinate of top-left corner
     )(
     input wire clk,                    // Clock signal for sequential processing
     input wire [15:0] color,           // 16-bit color input
     input wire [12:0] pixel_index,     // taking in the bit the oled is drawing       
     output reg [15:0] oled_data,       // Pixel color output
-    output reg valid                    // to ensure correct oled_data is used; true when correct data is being outputted
+    output reg valid                   // to ensure correct oled_data is used; true when correct data is being outputted
     );
 
     reg [0:6] letters [0:6];
@@ -40,8 +20,10 @@ module arrow #(
     
     always @(posedge clk) begin
         valid <= 0;
+        
         if (x >= start_x && x < (start_x + 7) && y >= start_y && y < (start_y + 7)) begin
             valid <= 1;
+            
             if (letters[(y - start_y)][(x - start_x)] == 1) begin
                 oled_data <= color;
             end else 
@@ -60,4 +42,5 @@ module arrow #(
         letters[5] = 7'b0111000;
         letters[6] = 7'b0100000;
     end
+    
 endmodule

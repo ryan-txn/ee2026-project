@@ -1,33 +1,9 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 04/10/2025 03:44:36 PM
-// Design Name: 
-// Module Name: Help
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
-
-module Help(
-    input wire clk6p25m,
-    input wire [12:0] pixel_index,
-    input wire btnL,
-    input wire enable_help_screen,
-    output reg [15:0] oled_data,
-    output reg back
-    );
+module Help (
+    input wire clk6p25m, input wire [12:0] pixel_index,
+    input wire [7:0] scan_code,
+    output reg [15:0] oled_data, output reg back);
     
     wire player_flag;
     wire wall_flag;
@@ -78,10 +54,9 @@ module Help(
     reg [15:0] final_pixel_data = 16'h0000;
     
     always @(posedge clk6p25m) begin 
-        if (enable_help_screen) begin
-            if (btnL)
-                back = 1;
-        end else 
+        if (scan_code == 8'h15)
+            back = 1;
+        else 
             back = 0;
         end
         
@@ -101,16 +76,14 @@ module Help(
             else 
                 oled_data <= 0;
         end
-
-        
+  
     returnColour_Player_menu #(.ROW_LOC(3), .COL_LOC(3),.DIMENSIONS(6)) player_Colour (clk6p25m, pixel_index, player_flag);    
     returnColour_Walls #(.ROW_LOC(13), .COL_LOC(3),.DIMENSIONS(6)) wall_Colour (clk6p25m, pixel_index, wall_flag);
     returnColour_StaticTraps #(.ROW_LOC(23), .COL_LOC(3), .DIMENSIONS(6)) trap1_Colour (clk6p25m, pixel_index, trap_flag);
     //returnColour_DynamicTraps #(.ROW_LOC(24), .COL_LOC(3), .DIMENSIONS(4), .IS_UP_DIRECTION(0), .TRAP_MOVEMENT_BOUND2(10)) trapDynamic1_Colour (clk6p25m, pixel_index, trapDynamic_flag);
     returnColour_Key_Door #(.ROW_LOC_KEY(33),.COL_LOC_KEY(3),.DIMENSIONS_KEY(6)) key1_Colour (clk6p25m, pixel_index, 0, key_flag, door_flag);
-    
 
-        
+
     always @(*) begin
         if (valid1) begin final_pixel_data = pixel_data1; valid_any = 1; end
         else if (valid2) begin final_pixel_data = pixel_data2; valid_any = 1; end

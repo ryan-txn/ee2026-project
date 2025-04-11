@@ -1,28 +1,9 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 03/21/2025 10:19:26 PM
-// Design Name: 
-// Module Name: Oled_Data_Mux
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
+
 module Oled_Data_Mux (
     input clk, input [1:0] selection, 
-    input [15:0] start_data, input [15:0] help_data,
-    input [15:0] menu_data,
-    output reg [1:0]enable, output reg [15:0] oled_data);
+    input [15:0] start_data, input [15:0] help_data, input [15:0] menu_data,
+    output reg enable, output reg [15:0] oled_data);
     
     always @ (posedge clk) begin
         if (selection == 1) begin

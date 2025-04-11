@@ -1,39 +1,16 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 03/15/2025 11:52:47 AM
-// Design Name: 
-// Module Name: menu
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
-
-module menu(
-    input wire clk6p25m,
-    input wire [12:0] pixel_index,
-    input wire btnU, btnC, btnD,
-    input wire enable_menu_screen,
-    output reg [15:0] oled_data,
-    output reg [1:0]selection = 0
-    );
+module menu (
+    input wire clk6p25m, input wire [12:0] pixel_index, input wire [7:0] scan_code,
+    output reg [15:0] oled_data, output reg [1:0] selection);
     
     wire [15:0] pixel_data1, pixel_data2, pixel_data3, pixel_data4, pixel_data5; 
     wire [15:0] pixel_data6, pixel_data7, pixel_data8, pixel_data9;               
     wire valid1, valid2, valid3, valid4, valid5, valid6, valid7, valid8, valid9;
+    
     wire [15:0] arrow_data1, arrow_data2;
     wire arrow_valid1, arrow_valid2;
+    
     reg [1:0] choose = 1;
     
     
@@ -52,22 +29,22 @@ module menu(
     
     //ARROW
     arrow #(24, 22) a1(clk6p25m, 16'hFFFF, pixel_index, arrow_data1, arrow_valid1);
-    arrow #(27, 32) a2(clk6p25m, 16'hFFFF, pixel_index, arrow_data2, arrow_valid2);  
+    arrow #(27, 32) a2(clk6p25m, 16'hFFFF, pixel_index, arrow_data2, arrow_valid2);   
     
     always @(posedge clk6p25m) begin
-        if (btnC && enable_menu_screen) begin
+        if (scan_code == 8'h24) begin
             selection = choose;
+        end else if (scan_code == 8'h15) begin
+            selection = 0;
         end
     end 
-    
-    //when btnC is pressed enable is set to true
-    //when btnD is pressed enable is set to false    
+  
     always @(posedge clk6p25m) begin
-        if (btnU) begin
-           choose <= 1;
-       end else if (btnD) begin
-           choose <= 2;
-       end
+        if (scan_code == 8'h22) begin
+            choose <= 1;
+        end else if (scan_code == 8'h21) begin
+            choose <= 2;
+        end
                
         if (valid1) begin
             oled_data <= pixel_data1;
@@ -93,4 +70,5 @@ module menu(
             oled_data <= arrow_data2;
         end     
     end
+    
 endmodule

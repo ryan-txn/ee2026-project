@@ -1,60 +1,32 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 03/30/2025 03:19:04 PM
-// Design Name: 
-// Module Name: returnColour_Key
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module returnColour_Key_Door #(
-        parameter ROW_LOC_KEY = 0,
-        parameter COL_LOC_KEY = 0,
-        parameter DIMENSIONS_KEY = 10,
-        parameter ROW_LOC_DOOR = 0,
-        parameter COL_LOC_DOOR = 0,
-        parameter DIMENSIONS_DOOR = 10
+    parameter ROW_LOC_KEY = 0,
+    parameter COL_LOC_KEY = 0,
+    parameter DIMENSIONS_KEY = 10,
+    parameter ROW_LOC_DOOR = 0,
+    parameter COL_LOC_DOOR = 0,
+    parameter DIMENSIONS_DOOR = 10
     )(
-        input clk,
-        input [12:0] pixel_index,
-        input taken,
-        output reg keyFlag,
-        output reg doorFlag
-    );
+    input clk, input [12:0] pixel_index, input taken,
+    output reg keyFlag, output reg doorFlag);
     
     always @ (posedge clk) begin
         if (
             (pixel_index / 96 < ROW_LOC_KEY + DIMENSIONS_KEY && pixel_index / 96 >= ROW_LOC_KEY) && 
             (pixel_index % 96 < COL_LOC_KEY + DIMENSIONS_KEY && pixel_index % 96 >= COL_LOC_KEY) &&
-            (~taken)
-        ) begin
+            (~taken)) begin
             keyFlag <= 1;
-        end
-        else begin
+        end else begin
             keyFlag <= 0;
         end
         
         if (
             (pixel_index / 96 < ROW_LOC_DOOR + DIMENSIONS_DOOR && pixel_index / 96 >= ROW_LOC_DOOR) && 
             (pixel_index % 96 < COL_LOC_DOOR + DIMENSIONS_DOOR && pixel_index % 96 >= COL_LOC_DOOR) &&
-            (taken)
-        ) begin
+            (taken)) begin
             doorFlag <= 1;
-        end
-        else begin
+        end else begin
             doorFlag <= 0;
         end        
     end

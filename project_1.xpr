@@ -6,7 +6,7 @@
 <Project Version="7" Minor="38" Path="D:/Vivado/EE2211/ee2026-project/project_1.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="d38581fb3946462da15be6df12c1d084"/>
+    <Option Name="Id" Val="03f542f8748b497db83aaebe7d695bb9"/>
     <Option Name="Part" Val="xc7a35tcpg236-1"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -61,7 +61,7 @@
       <Filter Type="Srcs"/>
       <File Path="$PSRCDIR/sources_1/new/Alphabets.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Alphabets.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/Alphabets.v"/>
           <Attr Name="ImportTime" Val="1742177029"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -70,8 +70,22 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/Clock_Divider.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Clock_Divider.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/Clock_Divider.v"/>
           <Attr Name="ImportTime" Val="1742174993"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Debouncer.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Destroyable_Block.v">
+        <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -79,7 +93,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/Game.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Game.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/Game.v"/>
           <Attr Name="ImportTime" Val="1743329520"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -95,7 +109,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/Keys_Doors.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Keys_Doors.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/Keys_Doors.v"/>
           <Attr Name="ImportTime" Val="1743326850"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -104,7 +118,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/Oled_Data_Mux.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Oled_Data_Mux.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/Oled_Data_Mux.v"/>
           <Attr Name="ImportTime" Val="1742567411"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -113,8 +127,15 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/Desktop/Oled_Display.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../MODS.srcs/sources_1/imports/Desktop/Oled_Display.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../MODS.srcs/sources_1/imports/Desktop/Oled_Display.v"/>
           <Attr Name="ImportTime" Val="1677398246"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/PS2_Receiver.v">
+        <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -122,7 +143,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/Reset_DynamicTrap.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Reset_DynamicTrap.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/Reset_DynamicTrap.v"/>
           <Attr Name="ImportTime" Val="1743327906"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -131,7 +152,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/Reset_StaticTraps.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Reset_StaticTraps.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/Reset_StaticTraps.v"/>
           <Attr Name="ImportTime" Val="1743324310"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -140,7 +161,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/Stop_Walls.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Stop_Walls.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/Stop_Walls.v"/>
           <Attr Name="ImportTime" Val="1743316639"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -149,7 +170,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/arrow.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/arrow.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/arrow.v"/>
           <Attr Name="ImportTime" Val="1742563520"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -158,7 +179,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/menu.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/menu.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/menu.v"/>
           <Attr Name="ImportTime" Val="1742568355"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -167,7 +188,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/moveWASD.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/moveWASD.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/moveWASD.v"/>
           <Attr Name="ImportTime" Val="1743316635"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -176,8 +197,15 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/returnColour.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/returnColour.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/returnColour.v"/>
           <Attr Name="ImportTime" Val="1743330124"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/returnColour_Destroyable.v">
+        <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -185,7 +213,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/returnColour_DynamicTrap.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/returnColour_DynamicTrap.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/returnColour_DynamicTrap.v"/>
           <Attr Name="ImportTime" Val="1743327904"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -194,7 +222,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/returnColour_Key.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/returnColour_Key.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/returnColour_Key.v"/>
           <Attr Name="ImportTime" Val="1743324643"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -210,7 +238,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/returnColour_StaticTraps.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/returnColour_StaticTraps.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/returnColour_StaticTraps.v"/>
           <Attr Name="ImportTime" Val="1743316636"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -219,7 +247,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/returnColour_Walls.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/returnColour_Walls.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/sources_1/new/returnColour_Walls.v"/>
           <Attr Name="ImportTime" Val="1743316621"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -228,7 +256,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/Top_Student.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../SoundDisplay.srcs/sources_1/new/Top_Student.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../SoundDisplay.srcs/sources_1/new/Top_Student.v"/>
           <Attr Name="ImportTime" Val="1570395690"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -238,7 +266,7 @@
       <File Path="$PSRCDIR/sources_1/ip/blk_mem_gen_inter/blk_mem_gen_inter.xci">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../MODS.srcs/sources_1/ip/blk_mem_gen_inter/blk_mem_gen_inter.xci"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../MODS.srcs/sources_1/ip/blk_mem_gen_inter/blk_mem_gen_inter.xci"/>
           <Attr Name="ImportTime" Val="1673495803"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -248,7 +276,7 @@
       <File Path="$PSRCDIR/sources_1/ip/blk_mem_gen_const/blk_mem_gen_const.xci">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../MODS.srcs/sources_1/ip/blk_mem_gen_const/blk_mem_gen_const.xci"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../MODS.srcs/sources_1/ip/blk_mem_gen_const/blk_mem_gen_const.xci"/>
           <Attr Name="ImportTime" Val="1686296404"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -258,7 +286,7 @@
       <File Path="$PSRCDIR/sources_1/ip/blk_mem_gen_img/blk_mem_gen_img.xci">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../MODS.srcs/sources_1/ip/blk_mem_gen_img/blk_mem_gen_img.xci"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../MODS.srcs/sources_1/ip/blk_mem_gen_img/blk_mem_gen_img.xci"/>
           <Attr Name="ImportTime" Val="1686296427"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -268,7 +296,7 @@
       <File Path="$PSRCDIR/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0.xci">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../MODS.srcs/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0.xci"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../MODS.srcs/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0.xci"/>
           <Attr Name="ImportTime" Val="1673495799"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -277,13 +305,13 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/MouseAudioDisplay/archive_project_summary.txt">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../MouseAudioDisplay/archive_project_summary.txt"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../MouseAudioDisplay/archive_project_summary.txt"/>
           <Attr Name="ImportTime" Val="1677398648"/>
         </FileInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/imports/res/weights.coe">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../res/weights.coe"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../res/weights.coe"/>
           <Attr Name="ImportTime" Val="1677159677"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -291,7 +319,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/res/00.coe">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../res/00.coe"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../res/00.coe"/>
           <Attr Name="ImportTime" Val="1677159677"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -300,7 +328,7 @@
       <File Path="$PSRCDIR/sources_1/imports/Desktop/Ps2Interface.vhd">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../MODS.srcs/sources_1/imports/Desktop/Ps2Interface.vhd"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../MODS.srcs/sources_1/imports/Desktop/Ps2Interface.vhd"/>
           <Attr Name="ImportTime" Val="1677398072"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -309,7 +337,7 @@
       <File Path="$PSRCDIR/sources_1/imports/Desktop/Mouse_Control.vhd">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../MODS.srcs/sources_1/imports/Desktop/Mouse_Control.vhd"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../MODS.srcs/sources_1/imports/Desktop/Mouse_Control.vhd"/>
           <Attr Name="ImportTime" Val="1677398056"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -318,7 +346,7 @@
       <File Path="$PSRCDIR/sources_1/new/neural_net.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../MODS.srcs/sources_1/new/neural_net.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../MODS.srcs/sources_1/new/neural_net.v"/>
           <Attr Name="ImportTime" Val="1677159677"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -328,7 +356,7 @@
       <File Path="$PSRCDIR/sources_1/new/paint.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../MODS.srcs/sources_1/new/paint.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../MODS.srcs/sources_1/new/paint.v"/>
           <Attr Name="ImportTime" Val="1709183192"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -338,7 +366,7 @@
       <File Path="$PSRCDIR/sources_1/new/CanvasTransfer.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../MODS.srcs/sources_1/new/CanvasTransfer.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../MODS.srcs/sources_1/new/CanvasTransfer.v"/>
           <Attr Name="ImportTime" Val="1680151347"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -348,7 +376,7 @@
       <File Path="$PSRCDIR/sources_1/new/module_pack.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../MODS.srcs/sources_1/new/module_pack.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../MODS.srcs/sources_1/new/module_pack.v"/>
           <Attr Name="ImportTime" Val="1686554360"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -358,7 +386,7 @@
       <File Path="$PSRCDIR/sources_1/new/ss_display.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../MODS.srcs/sources_1/new/ss_display.v"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../MODS.srcs/sources_1/new/ss_display.v"/>
           <Attr Name="ImportTime" Val="1696226948"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -367,16 +395,23 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/MODS/archive_project_summary.txt">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../archive_project_summary.txt"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../archive_project_summary.txt"/>
           <Attr Name="ImportTime" Val="1709183388"/>
         </FileInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/imports/FDP_Week9/archive_project_summary.txt">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../archive_project_summary.txt"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../archive_project_summary.txt"/>
           <Attr Name="ImportTime" Val="1741932969"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/imports/FDP/archive_project_summary.txt">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../Draft1-ShengJie/FDP/archive_project_summary.txt"/>
+          <Attr Name="ImportTime" Val="1744186969"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/archive_project_summary.txt"/>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="Top_Student"/>
@@ -386,7 +421,7 @@
       <Filter Type="Constrs"/>
       <File Path="$PSRCDIR/constrs_1/new/constr_1.xdc">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/constrs_1/new/constr_1.xdc"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../FDP.srcs/constrs_1/new/constr_1.xdc"/>
           <Attr Name="ImportTime" Val="1742177222"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
