@@ -71,14 +71,5 @@ module Top_Student (
     Oled_Display oled_display (
         clk6p25m, reset, frame_begin, sending_pixels, sample_pixel, pixel_index, 
         oled_data, JC[0], JC[1], JC[3], JC[4], JC[5], JC[6], JC[7]);
-    
-    /*    
-    always @(posedge clk6p25m) begin
-        if (back_menu) begin
-            option <= 0;
-        end else if (option == 2'b00 && scan_code == 8'h24)
-            option <= selection;
-    end
-    */
 
 endmodule

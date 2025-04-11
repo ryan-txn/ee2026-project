@@ -76,8 +76,7 @@ module Help (
             else 
                 oled_data <= 0;
         end
-
-        
+  
     returnColour_Player_menu #(.ROW_LOC(3), .COL_LOC(3),.DIMENSIONS(6)) player_Colour (clk6p25m, pixel_index, player_flag);    
     returnColour_Walls #(.ROW_LOC(13), .COL_LOC(3),.DIMENSIONS(6)) wall_Colour (clk6p25m, pixel_index, wall_flag);
     returnColour_StaticTraps #(.ROW_LOC(23), .COL_LOC(3), .DIMENSIONS(6)) trap1_Colour (clk6p25m, pixel_index, trap_flag);

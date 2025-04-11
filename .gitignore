@@ -42,6 +42,10 @@ obj_dir
 
 # vivado
 .Xil
+*wt/
+*runs/
+*.hw/
+*.ip_user_files
 
 # temp
 *.swp

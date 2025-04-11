@@ -7,10 +7,10 @@ module Oled_Data_Mux (
     
     always @ (posedge clk) begin
         if (selection == 1) begin
-            enable <= 1;
+            enable <= 2'b01;
             oled_data <= start_data;
         end else if (selection == 2) begin
-            enable <= 1;
+            enable <= 2'b10;
             oled_data <= help_data;
         end else begin
             enable <= 0;
