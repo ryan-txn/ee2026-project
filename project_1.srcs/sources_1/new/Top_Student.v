@@ -45,6 +45,11 @@ module Top_Student (
     // variables for menu screen
     wire [1:0] selection;
     wire [15:0] oled_data_menu; // oled_data when menu is active
+    
+    wire level_1_done;
+    wire level_2_done;
+
+
 
     menu menu (
         clk6p25m, pixel_index, scan_code[7:0], oled_data_menu, selection);
@@ -57,16 +62,31 @@ module Top_Student (
         clk6p25m, pixel_index, scan_code[7:0], oled_data_help, back_menu);
     
     // variables for game
-    wire [15:0] oled_data_game;
+    wire [15:0] oled_data_game1;
+    wire [15:0] oled_data_game2;
+    wire [15:0] oled_data_game3;
     
     // triggered after start is selected on menu
+<<<<<<< Updated upstream
     Game game (
         clk, clk6p25m, pixel_index, game_enable, scan_code, oled_data_game, game_state);
+=======
+    Game_1 game1 (clk, clk6p25m, pixel_index, game_enable, scan_code, oled_data_game1, level_1_done);
+    Game_2 game2 (clk, clk6p25m, pixel_index, game_enable, scan_code, oled_data_game2, level_2_done);
+    Game_3 game3 (clk, clk6p25m, pixel_index, game_enable, scan_code, oled_data_game3);
+
+
+>>>>>>> Stashed changes
         
     reg [1:0] option;
     
     Oled_Data_Mux oled_data_mux (
+<<<<<<< Updated upstream
         clk, selection, oled_data_game, oled_data_help, oled_data_menu, game_enable, oled_data);
+=======
+        clk, selection, level_1_done, level_2_done, oled_data_game1, oled_data_game2, oled_data_game3, 
+        oled_data_help, oled_data_menu, game_enable, oled_data);
+>>>>>>> Stashed changes
         
     Oled_Display oled_display (
         clk6p25m, reset, frame_begin, sending_pixels, sample_pixel, pixel_index, 

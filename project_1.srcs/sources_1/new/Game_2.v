@@ -1,9 +1,9 @@
 `timescale 1ns / 1ps
 
-module Game (
+module Game_2 (
     input clk, input clk6p25m, input [12:0] pixel_index, 
     input enable, input [15:0] scan_code,
-    output [15:0] oled_data); 
+    output [15:0] oled_data, output level_2_done); 
 
     // Oled_Display extra
     wire sample_pixel;
@@ -46,6 +46,7 @@ module Game (
         rest1_StopFlag || rest2_StopFlag || 
         door1_Flag || door2_Flag || 
         door3_Flag || door4_Flag);
+    assign level_2_done = door4_Flag;
 
     // trap reset flags
     wire trap1_ResetFlag;
@@ -163,7 +164,7 @@ module Game (
 
     // Block/Player shader (Location is top left of object)
     returnColour shader (
-        clk, pixel_index, xOffset, yOffset,
+        clk, pixel_index, xOffset + 10, yOffset + 10,
         collided_Flag, taken, oled_colour);
 
     // Block/Player Movement
