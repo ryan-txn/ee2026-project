@@ -39,7 +39,8 @@ module Top_Student (
     
     wire [12:0] pixel_index; // get which bit is writing from this
     wire [15:0] oled_data; // pass colour bit to this
-    wire enable;
+    wire game_enable;
+    wire [1:0] game_state;
     
     // variables for menu screen
     wire [1:0] selection;
@@ -50,7 +51,6 @@ module Top_Student (
         
     //variable for help screen
     wire [15:0] oled_data_help;
-    wire enable_help;
     wire back_menu;
         
     Help help (
@@ -61,12 +61,12 @@ module Top_Student (
     
     // triggered after start is selected on menu
     Game game (
-        clk, clk6p25m, pixel_index, enable, scan_code, oled_data_game);
+        clk, clk6p25m, pixel_index, game_enable, scan_code, oled_data_game, game_state);
         
     reg [1:0] option;
     
     Oled_Data_Mux oled_data_mux (
-        clk, selection, oled_data_game, oled_data_help, oled_data_menu, enable, oled_data);
+        clk, selection, oled_data_game, oled_data_help, oled_data_menu, game_enable, oled_data);
         
     Oled_Display oled_display (
         clk6p25m, reset, frame_begin, sending_pixels, sample_pixel, pixel_index, 

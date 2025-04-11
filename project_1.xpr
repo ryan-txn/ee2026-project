@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="38" Path="D:/Vivado/EE2211/ee2026-project/project_1.xpr">
+<Project Version="7" Minor="38" Path="C:/ee2026/final_project/Draft3-github/ee2026-project/project_1.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="03f542f8748b497db83aaebe7d695bb9"/>
