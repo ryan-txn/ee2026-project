@@ -37,8 +37,6 @@ module Top_Student (
     PS2_Receiver receiver (
         clk_50MHz, PS2Clk, PS2Data, scan_code);
     
-    wire [15:0] help_data = 16'hFFE0; // default yellow (actual data to be implemented)
-    
     wire [12:0] pixel_index; // get which bit is writing from this
     wire [15:0] oled_data; // pass colour bit to this
     wire enable;
@@ -49,20 +47,38 @@ module Top_Student (
 
     menu menu (
         clk6p25m, pixel_index, scan_code[7:0], oled_data_menu, selection);
+        
+    //variable for help screen
+    wire [15:0] oled_data_help;
+    wire enable_help;
+    wire back_menu;
+        
+    Help help (
+        clk6p25m, pixel_index, scan_code[7:0], oled_data_help, back_menu);
     
-    // variables for traps
+    // variables for game
     wire [15:0] oled_data_game;
     
     // triggered after start is selected on menu
     Game game (
         clk, clk6p25m, pixel_index, enable, scan_code, oled_data_game);
         
+    reg [1:0] option;
     
     Oled_Data_Mux oled_data_mux (
-        clk, selection, oled_data_game, help_data, oled_data_menu, enable, oled_data);
+        clk, selection, oled_data_game, oled_data_help, oled_data_menu, enable, oled_data);
         
     Oled_Display oled_display (
         clk6p25m, reset, frame_begin, sending_pixels, sample_pixel, pixel_index, 
         oled_data, JC[0], JC[1], JC[3], JC[4], JC[5], JC[6], JC[7]);
+    
+    /*    
+    always @(posedge clk6p25m) begin
+        if (back_menu) begin
+            option <= 0;
+        end else if (option == 2'b00 && scan_code == 8'h24)
+            option <= selection;
+    end
+    */
 
 endmodule

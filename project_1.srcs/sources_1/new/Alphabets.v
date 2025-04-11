@@ -1,10 +1,11 @@
 `timescale 1ns / 1ps
 
-module letter_display (
+module letter_display #(
+    parameter [4:0] LETTERIDEN = 1,     // choose which letter A = 1 up to Z = 26
+    parameter [6:0] XSTART = 0,          // X-coord from top left corner
+    parameter [6:0] YSTART = 1           // Y-coord from top left corner
+    )(
     input wire clk,                    // Clock signal for sequential processing
-    input wire [6:0] start_x,          // X-coordinate of top-left corner
-    input wire [6:0] start_y,          // Y-coordinate of top-left corner
-    input wire [4:0] letter_ident,     // choose which letter A = 1 up to Z = 26
     input wire [15:0] color,           // 16-bit color input
     input wire [12:0] pixel_index,     // taking in the bit the oled is drawing       
     output reg [15:0] oled_data,       // Pixel color output
@@ -21,10 +22,10 @@ module letter_display (
     always @(posedge clk) begin
         valid <= 0;
         
-        if (x >= start_x && x < (start_x + 7) && y >= start_y && y < (start_y + 7)) begin
+        if (x >= XSTART && x < (XSTART + 7) && y >= YSTART && y < (YSTART + 7)) begin
             valid <= 1;
             
-            if (letters[letter_ident][(y - start_y)][(x - start_x)] == 1) begin
+            if (letters[LETTERIDEN][(y - YSTART)][(x - XSTART)] == 1) begin
                 oled_data <= color;
             end else 
                 oled_data <= 16'h0000;
