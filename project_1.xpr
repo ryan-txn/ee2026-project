@@ -77,15 +77,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/Game.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Game.v"/>
-          <Attr Name="ImportTime" Val="1743329520"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/new/Help.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -102,15 +93,6 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/Help2.v">
         <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/Keys_Doors.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Keys_Doors.v"/>
-          <Attr Name="ImportTime" Val="1743326850"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -134,33 +116,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/Reset_DynamicTrap.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Reset_DynamicTrap.v"/>
-          <Attr Name="ImportTime" Val="1743327906"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/Reset_StaticTraps.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Reset_StaticTraps.v"/>
-          <Attr Name="ImportTime" Val="1743324310"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/Stop_Walls.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Stop_Walls.v"/>
-          <Attr Name="ImportTime" Val="1743316639"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/new/arrow.v">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/arrow.v"/>
@@ -174,33 +129,6 @@
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/menu.v"/>
           <Attr Name="ImportTime" Val="1742568355"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/moveWASD.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/moveWASD.v"/>
-          <Attr Name="ImportTime" Val="1743316635"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/returnColour.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/returnColour.v"/>
-          <Attr Name="ImportTime" Val="1743330124"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/returnColour_DynamicTrap.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/returnColour_DynamicTrap.v"/>
-          <Attr Name="ImportTime" Val="1743327904"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -244,6 +172,86 @@
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../SoundDisplay.srcs/sources_1/new/Top_Student.v"/>
           <Attr Name="ImportTime" Val="1570395690"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Game.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Game.v"/>
+          <Attr Name="ImportTime" Val="1743329520"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Keys_Doors.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Keys_Doors.v"/>
+          <Attr Name="ImportTime" Val="1743326850"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Reset_DynamicTrap.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Reset_DynamicTrap.v"/>
+          <Attr Name="ImportTime" Val="1743327906"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Reset_StaticTraps.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Reset_StaticTraps.v"/>
+          <Attr Name="ImportTime" Val="1743324310"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Stop_Walls.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/Stop_Walls.v"/>
+          <Attr Name="ImportTime" Val="1743316639"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/moveWASD.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/moveWASD.v"/>
+          <Attr Name="ImportTime" Val="1743316635"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/returnColour.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/returnColour.v"/>
+          <Attr Name="ImportTime" Val="1743330124"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/returnColour_DynamicTrap.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../FDP.srcs/sources_1/new/returnColour_DynamicTrap.v"/>
+          <Attr Name="ImportTime" Val="1743327904"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
