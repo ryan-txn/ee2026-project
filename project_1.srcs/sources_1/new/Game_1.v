@@ -206,7 +206,7 @@ module Game_1 (
     // Trap reset logic, instantiate multiple traps (Location is top left of object)
     // Link all trap reset flags
     Reset_StaticTrap #(         
-        .ROW_LOC(26),
+        .ROW_LOC(20),
         .COL_LOC(0),
         .DIMENSIONS(4)
     ) trap1 (

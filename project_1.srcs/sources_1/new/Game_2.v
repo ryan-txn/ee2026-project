@@ -126,7 +126,7 @@ module Game_2 (
             if (xOffset == 92 && yOffset == 47 && door2_Flag) // Door2 coordinates
                 nextMovement <= mvtDirection;
                 
-            if (xOffset == 73 && yOffset == 59 && door3_Flag) // Door3 coordinates
+            if (xOffset == 73 && yOffset == 60 && door3_Flag) // Door3 coordinates
                 nextMovement <= mvtDirection;
                 
             if (xOffset == 0 && yOffset == 0 && door4_Flag) begin // Door4 coordinates
@@ -267,10 +267,10 @@ module Game_2 (
         reset_keys, taken[1], door2_Flag);
         
     Keys_Doors #(
-        .ROW_LOC_KEY(59),
+        .ROW_LOC_KEY(60),
         .COL_LOC_KEY(0),
         .DIMENSIONS_KEY(4),
-        .ROW_LOC_DOOR(59),
+        .ROW_LOC_DOOR(60),
         .COL_LOC_DOOR(73),
         .DIMENSIONS_DOOR(4)
     ) key_door3 (
@@ -298,7 +298,7 @@ module Game_2 (
         clk6p25m, xOffset, yOffset, reset_keys, collided_Flag[0]);
         
     Destroyable_Block #(
-        .ROW_LOC(59),
+        .ROW_LOC(60),
         .COL_LOC(40),
         .DIMENSIONS(4)
     ) destroyable_block2 (

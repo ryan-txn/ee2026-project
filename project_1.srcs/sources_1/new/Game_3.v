@@ -3,7 +3,7 @@
 module Game_3 (
     input clk, input clk6p25m, input [12:0] pixel_index, 
     input enable, input [15:0] scan_code,
-    output [15:0] oled_data); 
+    output [15:0] oled_data, output level_3_done); 
 
     // Oled_Display extra
     wire sample_pixel;
@@ -51,6 +51,9 @@ module Game_3 (
         rest4_StopFlag || rest5_StopFlag || rest6_StopFlag ||
         door1_Flag || door2_Flag || door3_Flag
         );
+        
+    assign level_3_done = door3_Flag;
+
 
     // trap reset flags
     wire trap1_ResetFlag;
@@ -126,20 +129,20 @@ module Game_3 (
                 nextMovement <= mvtDirection;
             if (yOffset == 40 && xOffset == 20) // Rest point coordinates
                 nextMovement <= mvtDirection;
-            if (yOffset == 0 && xOffset == 80) // Rest point coordinates
+            if (yOffset == 0 && xOffset == 75) // Rest point coordinates
                 nextMovement <= mvtDirection;
             if (yOffset == 15 && xOffset == 40) // Rest point coordinates
                 nextMovement <= mvtDirection;
             if (yOffset == 25 && xOffset == 40) // Rest point coordinates
                 nextMovement <= mvtDirection;
         
-            if (yOffset == 45 && xOffset == 20 && door1_Flag) // Door1 coordinates
+            if (yOffset == 25 && xOffset == 75 && door1_Flag) // Door1 coordinates
                 nextMovement <= mvtDirection;
                 
-            if (yOffset == 25 && xOffset == 80 && door2_Flag) // Door2 coordinates
+            if (yOffset == 54 && xOffset == 40 && door2_Flag) // Door2 coordinates
                 nextMovement <= mvtDirection;
                 
-            if (yOffset == 54 && xOffset == 40 && door3_Flag) begin // Door4 coordinates
+            if (yOffset == 0 && xOffset == 92 && door3_Flag) begin // Door3 coordinates
                 nextMovement <= 4'b1111;
                 reset_keys <= 1;
             end
@@ -206,7 +209,7 @@ module Game_3 (
 
     Stop_Walls #(         
         .ROW_LOC(0),
-        .COL_LOC(80),
+        .COL_LOC(75),
         .DIMENSIONS(4)
     ) restPoint4 (
         xOffset, yOffset, rest4_StopFlag);
@@ -229,7 +232,7 @@ module Game_3 (
     // Link all trap reset flags
     Reset_StaticTrap #(         
         .ROW_LOC(0),
-        .COL_LOC(87),
+        .COL_LOC(80),
         .DIMENSIONS(4)
     ) trap1 (
         clk6p25m, xOffset, yOffset, trap1_ResetFlag);
@@ -250,14 +253,14 @@ module Game_3 (
 
     Reset_StaticTrap #(         
         .ROW_LOC(40),
-        .COL_LOC(90),
+        .COL_LOC(92),
         .DIMENSIONS(4)
     ) trap4 (
         clk6p25m, xOffset, yOffset, trap4_ResetFlag);
         
     Reset_StaticTrap #(         
         .ROW_LOC(60),
-        .COL_LOC(90),
+        .COL_LOC(92),
         .DIMENSIONS(4)
     ) trap5 (
         clk6p25m, xOffset, yOffset, trap5_ResetFlag);
@@ -321,10 +324,10 @@ module Game_3 (
         
     Keys_Doors #(
         .ROW_LOC_KEY(54),
-        .COL_LOC_KEY(90),
+        .COL_LOC_KEY(92),
         .DIMENSIONS_KEY(4),
         .ROW_LOC_DOOR(0),
-        .COL_LOC_DOOR(90),
+        .COL_LOC_DOOR(92),
         .DIMENSIONS_DOOR(4)
     ) key_door3 (
         clk6p25m, xOffset, yOffset, 

@@ -93,7 +93,7 @@ module returnColourGame1 (
     // Traps shader, instantiate multiple traps (Location is top left of object)
     // Link the flags
     returnColour_StaticTraps #(
-        .ROW_LOC(26),
+        .ROW_LOC(20),
         .COL_LOC(0),
         .DIMENSIONS(4)
     ) trap1_Colour (
@@ -298,10 +298,10 @@ module returnColourGame2 (
         clk, pixel_index, taken[1], key2_flag, door2_flag);
         
     returnColour_Key_Door #(
-        .ROW_LOC_KEY(59),
+        .ROW_LOC_KEY(60),
         .COL_LOC_KEY(0),
         .DIMENSIONS_KEY(4),
-        .ROW_LOC_DOOR(59),
+        .ROW_LOC_DOOR(60),
         .COL_LOC_DOOR(73),
         .DIMENSIONS_DOOR(4)
     ) key3_Colour (
@@ -327,7 +327,7 @@ module returnColourGame2 (
         clk, pixel_index, collided_flag[0], destroyed1_flag);
     
     returnColour_Destroyable #(
-        .ROW_LOC(59),
+        .ROW_LOC(60),
         .COL_LOC(40),
         .DIMENSIONS(4)
     ) destroyableBlock2_Colour (
@@ -429,7 +429,7 @@ module returnColourGame3 (
 
     returnColour_Walls #(
         .ROW_LOC(0),
-        .COL_LOC(80),
+        .COL_LOC(75),
         .DIMENSIONS(4)
     ) rest4_Colour (
         clk, pixel_index, rest4_flag);
@@ -452,7 +452,7 @@ module returnColourGame3 (
     // Link the flags
     returnColour_StaticTraps #(
         .ROW_LOC(0),
-        .COL_LOC(87),
+        .COL_LOC(80),
         .DIMENSIONS(4)
     ) trap1_Colour (
         clk, pixel_index, trap1_flag);
@@ -473,14 +473,14 @@ module returnColourGame3 (
     
     returnColour_StaticTraps #(
         .ROW_LOC(40),
-        .COL_LOC(90),
+        .COL_LOC(92),
         .DIMENSIONS(4)
     ) trap4_Colour (
         clk, pixel_index, trap4_flag);
         
     returnColour_StaticTraps #(
         .ROW_LOC(60),
-        .COL_LOC(90),
+        .COL_LOC(92),
         .DIMENSIONS(4)
     ) trap5_Colour (
         clk, pixel_index, trap5_flag);
@@ -525,7 +525,7 @@ module returnColourGame3 (
         .COL_LOC_KEY(20),
         .DIMENSIONS_KEY(4),
         .ROW_LOC_DOOR(25),
-        .COL_LOC_DOOR(80),
+        .COL_LOC_DOOR(75),
         .DIMENSIONS_DOOR(4)
     ) key1_Colour (
         clk, pixel_index, taken[0], key1_flag, door1_flag);
@@ -542,10 +542,10 @@ module returnColourGame3 (
         
     returnColour_Key_Door #(
         .ROW_LOC_KEY(54),
-        .COL_LOC_KEY(90),
+        .COL_LOC_KEY(92),
         .DIMENSIONS_KEY(4),
         .ROW_LOC_DOOR(0),
-        .COL_LOC_DOOR(90),
+        .COL_LOC_DOOR(92),
         .DIMENSIONS_DOOR(4)
     ) key3_Colour (
         clk, pixel_index, taken[2], key3_flag, door3_flag);
