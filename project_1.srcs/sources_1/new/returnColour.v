@@ -1,7 +1,141 @@
 `timescale 1ns / 1ps
 
 // Array of trap locations and colour
-module returnColour (
+module returnColourGame1 (
+    input clk, input [12:0] pixel_index,
+    input [6:0] xOffset, input [5:0] yOffset,
+    input taken, output reg [15:0] oled_colour);
+    
+    // instantiate wall flags for each object instance
+    wire rest1_flag;
+    wire rest2_flag;
+    wire rest3_flag;
+    wire rest4_flag;
+    wire rest5_flag;
+
+    
+    // instantiate trap flags 
+    wire trap1_flag;
+    wire trap2_flag;
+    wire trap3_flag;
+    wire trap4_flag;
+    
+    //instantiate key flags
+    wire key1_flag;
+    
+    //instantiate door flags
+    wire door1_flag;
+    
+    integer count = 0;
+
+    // edit and put in separate module   
+    always @ (posedge clk) begin 
+        if ( // Paint player block to colour green
+            (pixel_index / 96 < 4 + yOffset && pixel_index / 96 >= yOffset) && 
+            (pixel_index % 96 < 4 + xOffset && pixel_index % 96 >= xOffset))
+            // green
+            oled_colour <= 16'h07E0;     
+        else if (rest1_flag || rest2_flag || rest3_flag || rest4_flag || rest5_flag)
+            // white
+            oled_colour <= 16'hFFFF;     
+        else if (trap1_flag || trap2_flag || trap3_flag || trap4_flag)
+            // red
+            oled_colour <= 16'hF800;     
+        else if (key1_flag)
+            // pink
+            oled_colour <= 16'hF819; 
+        // last door open (game completed)
+        else if (door1_flag == 1)
+            // yellow
+            oled_colour <= 16'hFFE0;
+        else
+            // black 
+            oled_colour <= 0;   
+    end
+    
+    // Rest points shader, instantiate multiple rest points (Location is top left of object)
+    // Link the flags
+    returnColour_Walls #(
+        .ROW_LOC(0),
+        .COL_LOC(60),
+        .DIMENSIONS(4)
+    ) rest1_Colour (
+        clk, pixel_index, rest1_flag);
+    
+    returnColour_Walls #(
+        .ROW_LOC(30),
+        .COL_LOC(80),
+        .DIMENSIONS(4)
+    ) rest2_Colour (
+        clk, pixel_index, rest2_flag);
+
+    returnColour_Walls #(
+        .ROW_LOC(56),
+        .COL_LOC(60),
+        .DIMENSIONS(4)
+    ) rest3_Colour (
+        clk, pixel_index, rest3_flag);    
+
+    returnColour_Walls #(
+        .ROW_LOC(56),
+        .COL_LOC(80),
+        .DIMENSIONS(4)
+    ) rest4_Colour (
+        clk, pixel_index, rest4_flag);
+        
+    returnColour_Walls #(
+            .ROW_LOC(30),
+            .COL_LOC(0),
+            .DIMENSIONS(4)
+        ) rest5_Colour (
+            clk, pixel_index, rest5_flag);
+    
+    // Traps shader, instantiate multiple traps (Location is top left of object)
+    // Link the flags
+    returnColour_StaticTraps #(
+        .ROW_LOC(26),
+        .COL_LOC(0),
+        .DIMENSIONS(4)
+    ) trap1_Colour (
+        clk, pixel_index, trap1_flag);
+    
+    returnColour_StaticTraps #(
+        .ROW_LOC(56),
+        .COL_LOC(35),
+        .DIMENSIONS(4)
+    ) trap2_Colour (
+        clk, pixel_index, trap2_flag);
+    
+    returnColour_StaticTraps #(
+        .ROW_LOC(60),
+        .COL_LOC(35),
+        .DIMENSIONS(4)
+    ) trap3_Colour (
+        clk, pixel_index, trap3_flag);
+    
+    returnColour_StaticTraps #(
+        .ROW_LOC(0),
+        .COL_LOC(90),
+        .DIMENSIONS(4)
+    ) trap4_Colour (
+        clk, pixel_index, trap4_flag);
+    
+    // Keys / doors shader, instantiate multiple keys / doors (Location is top left of object)
+    // Link the flags
+    returnColour_Key_Door #(
+        .ROW_LOC_KEY(60),
+        .COL_LOC_KEY(0),
+        .DIMENSIONS_KEY(4),
+        .ROW_LOC_DOOR(0),
+        .COL_LOC_DOOR(0),
+        .DIMENSIONS_DOOR(4)
+    ) key1_Colour (
+        clk, pixel_index, taken, key1_flag, door1_flag);
+    
+endmodule
+
+// Array of trap locations and colour
+module returnColourGame2 (
     input clk, input [12:0] pixel_index,
     input [6:0] xOffset, input [5:0] yOffset,
     input [1:0] collided_flag, input [3:0] taken, // each bit respresent 1 key (if 00100 -> means key 3 is taken and should not be shown)

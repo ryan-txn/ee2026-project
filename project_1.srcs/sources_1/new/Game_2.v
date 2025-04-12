@@ -163,8 +163,8 @@ module Game_2 (
     end
 
     // Block/Player shader (Location is top left of object)
-    returnColour shader (
-        clk, pixel_index, xOffset + 10, yOffset + 10,
+    returnColourGame2 shader (
+        clk, pixel_index, xOffset, yOffset,
         collided_Flag, taken, oled_colour);
 
     // Block/Player Movement
