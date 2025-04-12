@@ -28,8 +28,8 @@ module menu (
     letter_display #(16, 55, 32) P1(clk6p25m,16'hFFFF, pixel_index, pixel_data9, valid9); 
     
     //ARROW
-    arrow #(24, 22) a1(clk6p25m, 16'hFFFF, pixel_index, arrow_data1, arrow_valid1);
-    arrow #(27, 32) a2(clk6p25m, 16'hFFFF, pixel_index, arrow_data2, arrow_valid2);   
+    arrow #(0, 24, 22) a1(clk6p25m, 16'hFFFF, pixel_index, arrow_data1, arrow_valid1);
+    arrow #(0, 27, 32) a2(clk6p25m, 16'hFFFF, pixel_index, arrow_data2, arrow_valid2);  
     
     always @(posedge clk6p25m) begin
         if (scan_code == 8'h24) begin
