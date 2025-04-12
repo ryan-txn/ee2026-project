@@ -181,7 +181,8 @@ module returnColourGame2 (
         else if (rest1_flag || rest2_flag)
             // white
             oled_colour <= 16'hFFFF;     
-        else if (trap1_flag || trap2_flag || trap3_flag || trap4_flag)
+        else if (trap1_flag || trap2_flag || trap3_flag || trap4_flag ||
+            trapDynamic1_flag || trapDynamic2_flag || trapDynamic3_flag)
             // red
             oled_colour <= 16'hF800;     
         else if (key1_flag || key2_flag || key3_flag || key4_flag)
@@ -191,9 +192,6 @@ module returnColourGame2 (
         else if (door1_flag == 1 || door2_flag == 1 || door3_flag == 1)
             // white (becomes a stop point after taking key)
             oled_colour <= 16'hFFFF;  
-        else if (trapDynamic1_flag || trapDynamic2_flag || trapDynamic3_flag)
-            // orange
-            oled_colour <= 16'hFB00;
         // last door open (game completed)
         else if (door4_flag == 1)
             // yellow

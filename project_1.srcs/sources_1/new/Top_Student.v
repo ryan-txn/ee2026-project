@@ -70,9 +70,7 @@ module Top_Student (
     Game_1 game1 (clk, clk6p25m, pixel_index, game_enable, scan_code, oled_data_game1, level_1_done);
     Game_2 game2 (clk, clk6p25m, pixel_index, game_enable, scan_code, oled_data_game2, level_2_done);
     Game_3 game3 (clk, clk6p25m, pixel_index, game_enable, scan_code, oled_data_game3);
-        
-    reg [1:0] option;
-    
+            
     Oled_Data_Mux oled_data_mux (
         clk, selection, level_1_done, level_2_done, oled_data_game1, oled_data_game2, oled_data_game3, 
         oled_data_help, oled_data_menu, game_enable, oled_data);
