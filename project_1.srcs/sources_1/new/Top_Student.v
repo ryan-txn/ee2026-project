@@ -53,7 +53,7 @@ module Top_Student (
     wire enable_help;
     wire back_menu;
         
-    Help help (
+    Help help ( 
         clk6p25m, pixel_index, scan_code[7:0], oled_data_help, back_menu);
     
     // variables for game

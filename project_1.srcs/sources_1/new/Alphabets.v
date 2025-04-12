@@ -12,7 +12,7 @@ module letter_display #(
     output reg valid                   // to ensure correct oled_data is used; true when correct data is being outputted
     );
 
-    reg [0:6] letters [0:26] [0:6];
+    reg [0:6] letters [26:0] [0:6];
     wire [6:0] x;
     wire [6:0] y;
     
