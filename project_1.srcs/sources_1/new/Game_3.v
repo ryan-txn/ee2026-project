@@ -30,47 +30,51 @@ module Game_3 (
     // reset keys/doors when trap hit
     reg reset_keys = 0;
     // key taken record
-    wire [3:0] taken;
+    wire [2:0] taken;
     // door flags
     wire door1_Flag;
     wire door2_Flag;
     wire door3_Flag;
-    wire door4_Flag;
 
     // wall stop flags
     wire rest1_StopFlag;
     wire rest2_StopFlag;
+    wire rest3_StopFlag;
+    wire rest4_StopFlag;
+    wire rest5_StopFlag;
+    wire rest6_StopFlag;
+
     wire restStop;
     
     assign restStop = (
-        rest1_StopFlag || rest2_StopFlag || 
-        door1_Flag || door2_Flag || 
-        door3_Flag || door4_Flag);
+        rest1_StopFlag || rest2_StopFlag || rest3_StopFlag || 
+        rest4_StopFlag || rest5_StopFlag || rest6_StopFlag ||
+        door1_Flag || door2_Flag || door3_Flag
+        );
 
     // trap reset flags
     wire trap1_ResetFlag;
     wire trap2_ResetFlag;
     wire trap3_ResetFlag;
     wire trap4_ResetFlag;
+    wire trap5_ResetFlag;
     wire trapDynamic1_Resetflag;
     wire trapDynamic2_Resetflag;
     wire trapDynamic3_Resetflag;
+    wire trapDynamic4_Resetflag;
     wire trapReset;
     
     assign trapReset = (
         trap1_ResetFlag || trap2_ResetFlag ||
-        trap3_ResetFlag || trap4_ResetFlag ||
+        trap3_ResetFlag || trap4_ResetFlag || trap5_ResetFlag ||
         trapDynamic1_Resetflag || trapDynamic2_Resetflag || 
-        trapDynamic3_Resetflag);
-        
-    // destroyable block flag
-    wire [1:0] collided_Flag;
+        trapDynamic3_Resetflag || trapDynamic4_Resetflag);
 
     // Boundaries
     parameter OOB_top = 0;
     parameter OOB_left = 0;
     parameter OOB_right = 92; //95
-    parameter OOB_bottom = 59; //63
+    parameter OOB_bottom = 60; //63
 
     integer count = 0;
     reg first_touch_stops = 1;
@@ -116,19 +120,26 @@ module Game_3 (
             end
 
             // Change movement from rest points
-            if (xOffset == 40 && yOffset == 0) // Rest point coordinates
+            if (yOffset == 60 && xOffset == 0) // Rest point coordinates
+                nextMovement <= mvtDirection;
+            if (yOffset == 60 && xOffset == 20) // Rest point coordinates
+                nextMovement <= mvtDirection;
+            if (yOffset == 40 && xOffset == 20) // Rest point coordinates
+                nextMovement <= mvtDirection;
+            if (yOffset == 0 && xOffset == 80) // Rest point coordinates
+                nextMovement <= mvtDirection;
+            if (yOffset == 15 && xOffset == 40) // Rest point coordinates
+                nextMovement <= mvtDirection;
+            if (yOffset == 25 && xOffset == 40) // Rest point coordinates
                 nextMovement <= mvtDirection;
         
-            if (xOffset == 0 && yOffset == 20 && door1_Flag) // Door1 coordinates
+            if (yOffset == 45 && xOffset == 20 && door1_Flag) // Door1 coordinates
                 nextMovement <= mvtDirection;
                 
-            if (xOffset == 92 && yOffset == 47 && door2_Flag) // Door2 coordinates
+            if (yOffset == 25 && xOffset == 80 && door2_Flag) // Door2 coordinates
                 nextMovement <= mvtDirection;
                 
-            if (xOffset == 73 && yOffset == 59 && door3_Flag) // Door3 coordinates
-                nextMovement <= mvtDirection;
-                
-            if (xOffset == 0 && yOffset == 0 && door4_Flag) begin // Door4 coordinates
+            if (yOffset == 54 && xOffset == 40 && door3_Flag) begin // Door4 coordinates
                 nextMovement <= 4'b1111;
                 reset_keys <= 1;
             end
@@ -162,9 +173,9 @@ module Game_3 (
     end
 
     // Block/Player shader (Location is top left of object)
-    returnColourGame2 shader (
-        clk, pixel_index, xOffset + 20, yOffset + 20,
-        collided_Flag, taken, oled_colour);
+    returnColourGame3 shader (
+        clk, pixel_index, xOffset, yOffset,
+        taken, oled_colour);
 
     // Block/Player Movement
     MoveWASD move (
@@ -173,134 +184,150 @@ module Game_3 (
     // Rest point logic, instantiate multiple rest points (Location is top left of object)
     // Link all wall stop flags
     Stop_Walls #(         
-        .ROW_LOC(0),
-        .COL_LOC(40),
+        .ROW_LOC(60),
+        .COL_LOC(0),
         .DIMENSIONS(4)
     ) restPoint1 (
         xOffset, yOffset, rest1_StopFlag);
         
     Stop_Walls #(         
-        .ROW_LOC(47),
-        .COL_LOC(55),
+        .ROW_LOC(60),
+        .COL_LOC(20),
         .DIMENSIONS(4)
     ) restPoint2 (
         xOffset, yOffset, rest2_StopFlag);
+        
+    Stop_Walls #(         
+        .ROW_LOC(40),
+        .COL_LOC(20),
+        .DIMENSIONS(4)
+    ) restPoint3 (
+        xOffset, yOffset, rest3_StopFlag);
+
+    Stop_Walls #(         
+        .ROW_LOC(0),
+        .COL_LOC(80),
+        .DIMENSIONS(4)
+    ) restPoint4 (
+        xOffset, yOffset, rest4_StopFlag);
+        
+    Stop_Walls #(         
+        .ROW_LOC(15),
+        .COL_LOC(40),
+        .DIMENSIONS(4)
+    ) restPoint5 (
+        xOffset, yOffset, rest5_StopFlag);
+        
+    Stop_Walls #(         
+        .ROW_LOC(25),
+        .COL_LOC(40),
+        .DIMENSIONS(4)
+    ) restPoint6 (
+        xOffset, yOffset, rest6_StopFlag);
 
     // Trap reset logic, instantiate multiple traps (Location is top left of object)
     // Link all trap reset flags
     Reset_StaticTrap #(         
         .ROW_LOC(0),
-        .COL_LOC(85),
+        .COL_LOC(87),
         .DIMENSIONS(4)
     ) trap1 (
         clk6p25m, xOffset, yOffset, trap1_ResetFlag);
 
     Reset_StaticTrap #(         
-        .ROW_LOC(54),
-        .COL_LOC(92),
+        .ROW_LOC(25),
+        .COL_LOC(20),
         .DIMENSIONS(4)
     ) trap2 (
         clk6p25m, xOffset, yOffset, trap2_ResetFlag);
 
     Reset_StaticTrap #(         
-        .ROW_LOC(30),
-        .COL_LOC(40),
+        .ROW_LOC(60),
+        .COL_LOC(30),
         .DIMENSIONS(4)
     ) trap3 (
         clk6p25m, xOffset, yOffset, trap3_ResetFlag);
 
     Reset_StaticTrap #(         
-        .ROW_LOC(54),
-        .COL_LOC(0),
+        .ROW_LOC(40),
+        .COL_LOC(90),
         .DIMENSIONS(4)
     ) trap4 (
         clk6p25m, xOffset, yOffset, trap4_ResetFlag);
+        
+    Reset_StaticTrap #(         
+        .ROW_LOC(60),
+        .COL_LOC(90),
+        .DIMENSIONS(4)
+    ) trap5 (
+        clk6p25m, xOffset, yOffset, trap5_ResetFlag);
 
 
     Reset_DynamicTrap #(         
-        .ROW_LOC(30),
-        .COL_LOC(20),
+        .ROW_LOC(8),
+        .COL_LOC(0),
         .DIMENSIONS(4),
-        .IS_UP_DIRECTION(1)
+        .IS_UP_DIRECTION(0)
     ) trapDynamic1 (
         clk, xOffset, yOffset, trapDynamic1_Resetflag);
 
     Reset_DynamicTrap #(         
-        .ROW_LOC(40),
-        .COL_LOC(20),
+        .ROW_LOC(21),
+        .COL_LOC(15),
         .DIMENSIONS(4),
         .IS_UP_DIRECTION(0)
     ) trapDynamic2 (
         clk, xOffset, yOffset, trapDynamic2_Resetflag);
         
     Reset_DynamicTrap #(         
-        .ROW_LOC(40),
-        .COL_LOC(65),
+        .ROW_LOC(33),
+        .COL_LOC(30),
         .DIMENSIONS(4),
-        .IS_UP_DIRECTION(1)
+        .IS_UP_DIRECTION(0)
     ) trapDynamic3 (
         clk, xOffset, yOffset, trapDynamic3_Resetflag);
+        
+    Reset_DynamicTrap #(         
+        .ROW_LOC(0),
+        .COL_LOC(60),
+        .DIMENSIONS(4),
+        .IS_UP_DIRECTION(1)
+    ) trapDynamic4 (
+        clk, xOffset, yOffset, trapDynamic4_Resetflag);
 
     // Key / door logic, instantiate multiple keys / doors (Location is top left of object)
     // Link all key / door flags
     Keys_Doors #(
-        .ROW_LOC_KEY(0),
-        .COL_LOC_KEY(25),
+        .ROW_LOC_KEY(45),
+        .COL_LOC_KEY(20),
         .DIMENSIONS_KEY(4),
-        .ROW_LOC_DOOR(20),
-        .COL_LOC_DOOR(0),
+        .ROW_LOC_DOOR(25),
+        .COL_LOC_DOOR(80),
         .DIMENSIONS_DOOR(4)
     ) key_door1 (
         clk6p25m, xOffset, yOffset, 
         reset_keys, taken[0], door1_Flag);
         
     Keys_Doors #(
-        .ROW_LOC_KEY(0),
-        .COL_LOC_KEY(92),
+        .ROW_LOC_KEY(15),
+        .COL_LOC_KEY(65),
         .DIMENSIONS_KEY(4),
-        .ROW_LOC_DOOR(47),
-        .COL_LOC_DOOR(92),
+        .ROW_LOC_DOOR(54),
+        .COL_LOC_DOOR(40),
         .DIMENSIONS_DOOR(4)
     ) key_door2 (
         clk6p25m, xOffset, yOffset, 
         reset_keys, taken[1], door2_Flag);
         
     Keys_Doors #(
-        .ROW_LOC_KEY(59),
-        .COL_LOC_KEY(0),
+        .ROW_LOC_KEY(54),
+        .COL_LOC_KEY(90),
         .DIMENSIONS_KEY(4),
-        .ROW_LOC_DOOR(59),
-        .COL_LOC_DOOR(73),
+        .ROW_LOC_DOOR(0),
+        .COL_LOC_DOOR(90),
         .DIMENSIONS_DOOR(4)
     ) key_door3 (
         clk6p25m, xOffset, yOffset, 
         reset_keys, taken[2], door3_Flag);
-        
-    Keys_Doors #(
-        .ROW_LOC_KEY(14),
-        .COL_LOC_KEY(73),
-        .DIMENSIONS_KEY(4),
-        .ROW_LOC_DOOR(0),
-        .COL_LOC_DOOR(0),
-        .DIMENSIONS_DOOR(4)
-    ) key_door4 (
-        clk6p25m, xOffset, yOffset, 
-        reset_keys, taken[3], door4_Flag);
-        
-    // Destroyable wall logic, instantiate multiple walls (Location is top left of object)
-    // Link all destroyable wall flags
-    Destroyable_Block #(
-        .ROW_LOC(30),
-        .COL_LOC(92),
-        .DIMENSIONS(4)
-    ) destroyable_block1 (
-        clk6p25m, xOffset, yOffset, reset_keys, collided_Flag[0]);
-        
-    Destroyable_Block #(
-        .ROW_LOC(59),
-        .COL_LOC(40),
-        .DIMENSIONS(4)
-    ) destroyable_block2 (
-        clk6p25m, xOffset, yOffset, reset_keys, collided_Flag[1]);
 
 endmodule

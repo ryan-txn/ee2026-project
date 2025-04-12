@@ -66,7 +66,7 @@ module Game_1 (
     parameter OOB_top = 0;
     parameter OOB_left = 0;
     parameter OOB_right = 92; //95
-    parameter OOB_bottom = 59; //63
+    parameter OOB_bottom = 60; //63
 
     integer count = 0;
     reg first_touch_stops = 1;

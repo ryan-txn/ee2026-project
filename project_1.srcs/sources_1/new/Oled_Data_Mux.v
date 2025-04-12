@@ -22,7 +22,7 @@ module Oled_Data_Mux (
                     GAME_1: begin
                         if (level_done1)
                             game_selector <= GAME_2;
-                        oled_data <= oled_data_game1;
+                        oled_data <= oled_data_game3;
                     end
                     GAME_2: begin
                         if (level_done2)
