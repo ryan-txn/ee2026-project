@@ -4,7 +4,7 @@ module Oled_Data_Mux (
     input clk, input [1:0] selection, input level_done1, input level_done2, input level_done3,
     input [15:0] oled_data_game1, input [15:0] oled_data_game2, input [15:0] oled_data_game3,
     input [15:0] oled_data_win, input [15:0] oled_data_help, input [15:0] oled_data_menu,
-    output reg enable, output reg [15:0] oled_data);
+    output reg enable, output reg [15:0] oled_data, output reg reset_level_3);
     
     localparam GAME_1 = 2'b00,
            GAME_2 = 2'b01,
@@ -12,9 +12,11 @@ module Oled_Data_Mux (
            GAME_WIN = 2'b11;
     
     reg [1:0] game_selector;
+    reg prev_level_2_done;
     
     
     always @ (posedge clk) begin
+        prev_level_2_done <= level_done2;
         if (selection == 1) begin
             enable <= 1'b1;
                 case (game_selector)
@@ -31,6 +33,9 @@ module Oled_Data_Mux (
                     GAME_3: begin
                         if (level_done3)
                             game_selector <= GAME_WIN;
+                        else if (level_done2 && !prev_level_2_done) begin
+                            reset_level_3 <= 1;
+                        end
                         oled_data = oled_data_game3;
                     end
                     GAME_WIN: begin

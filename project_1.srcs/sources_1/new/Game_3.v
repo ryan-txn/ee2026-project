@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module Game_3 (
-    input clk, input clk6p25m, input [12:0] pixel_index, 
+    input reset_level_3, input clk, input clk6p25m, input [12:0] pixel_index, 
     input enable, input [15:0] scan_code,
     output [15:0] oled_data, output level_3_done); 
 
@@ -43,7 +43,6 @@ module Game_3 (
     wire rest4_StopFlag;
     wire rest5_StopFlag;
     wire rest6_StopFlag;
-
     wire restStop;
     
     assign restStop = (
@@ -51,7 +50,6 @@ module Game_3 (
         rest4_StopFlag || rest5_StopFlag || rest6_StopFlag ||
         door1_Flag || door2_Flag || door3_Flag
         );
-        
     assign level_3_done = door3_Flag;
 
 
@@ -81,10 +79,18 @@ module Game_3 (
 
     integer count = 0;
     reg first_touch_stops = 1;
-    reg reset_done = 0;
+    reg reset_done = 0;    
 
     // edit and put in separate module
     always @ (posedge clk6p25m) begin 
+        if (reset_level_3) begin
+            xOffset <= 0;
+            yOffset <= 0;
+            nextMovement <= 4'b1111;
+            reset_keys <= 1;
+            reset_done <= 1;
+        end
+            
         count <= count + 1;
         
         // shld only allow if touching wall
@@ -121,7 +127,7 @@ module Game_3 (
             if (restStop) begin
                 nextMovement <= 4'b1111; // Arbitrary value to stop movement
             end
-
+/*
             // Change movement from rest points
             if (yOffset == 60 && xOffset == 0) // Rest point coordinates
                 nextMovement <= mvtDirection;
@@ -140,7 +146,7 @@ module Game_3 (
                 nextMovement <= mvtDirection;
                 
             if (yOffset == 54 && xOffset == 40 && door2_Flag) // Door2 coordinates
-                nextMovement <= mvtDirection;
+                nextMovement <= mvtDirection;*/
                 
             if (yOffset == 0 && xOffset == 92 && door3_Flag) begin // Door3 coordinates
                 nextMovement <= 4'b1111;
@@ -305,7 +311,7 @@ module Game_3 (
         .COL_LOC_KEY(20),
         .DIMENSIONS_KEY(4),
         .ROW_LOC_DOOR(25),
-        .COL_LOC_DOOR(80),
+        .COL_LOC_DOOR(75),
         .DIMENSIONS_DOOR(4)
     ) key_door1 (
         clk6p25m, xOffset, yOffset, 
