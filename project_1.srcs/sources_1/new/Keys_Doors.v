@@ -18,7 +18,7 @@ module Keys_Doors #(
     (* KEEP = "TRUE" *) input [5:0] yOffset,
     (* KEEP = "TRUE" *) input reset,
     (* KEEP = "TRUE" *) output reg takenFlag = 0,
-    (* KEEP = "TRUE" *) output reg doorFlag);
+    (* KEEP = "TRUE" *) output reg doorFlag = 0);
     
     always @ (posedge CLK) begin
         if (    
